@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test api</title>
+
+    <style>
+        .container {
+            width: 400px;
+            height: 500px;
+            border-left: 1px solid grey;
+            border-right: 1px solid grey;
+            text-align: center;
+            margin: 150px auto;
+        }
+        .avatar {
+            border-radius: 50%;
+            height: 150px;
+            width: 150px;
+            border: 5px solid skyblue;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 15px;
+        }
+        #btn {
+            width: 80%;
+            height: 100px;
+            outline: none;
+            border: none;
+            border-radius: 25px;
+            background: skyblue;
+            font-size: 24px;
+        }
+    </style>
+
+
+</head>
+<body class="body">
+    <div class="container">
+        <h1 class="title"></h1>
+        <div class="info"></div>
+        <button id="btn">Сменить пользователя</button>
+    </div>
+
+
+    <script>
+
+        const body = document.querySelector('.body');
+        const title = document.querySelector('.title');
+        const info = document.querySelector('.info');
+        const btn = document.getElementById('btn');
+
+        // fetch('https://api.coindesk.com/v1/bpi/currentprice.json')
+        //     .then((response) => {
+        //         return response.json();
+        //     })
+        //     .then((data) => {
+        //         console.log(data);
+        //         title.innerHTML = data.chartName;
+        //         info.innerHTML = 
+        //         `${data.bpi.USD.code} 
+        //         ${data.bpi.USD.symbol} 
+        //         ${data.bpi.USD.rate} 
+        //         ${data.bpi.USD.description}`;
+        //     });
+
+        fetch('https://randomuser.me/api/')
+            .then((response) => {
+                return response.json();
+            })
+            .then((data)=>{
+                console.log(data);
+                title.innerHTML = `
+                <img class='avatar' src="${data.results[0].picture.large}"/> 
+                ${data.results[0].name.title} 
+                ${data.results[0].name.first} 
+                ${data.results[0].name.last}
+                `;
+            });
+            
+        btn.addEventListener('click', ()=>{
+            window.location.reload();
+        })    
+           
+    </script>
+</body>
+</html>
